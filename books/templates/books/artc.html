@@ -1,0 +1,108 @@
+{% extends 'base.html' %}
+
+{% block title %} Книгофил {% endblock %}
+{% block homeactive %} active {% endblock homeactive %}
+
+{% block css %}
+
+<style>body{background-color: ivory}
+    .rectangle{
+	           float:left;
+			   border: 2px solid #FEE9A0;               
+			   padding-left: 0.25em;
+			   padding-right: 0.25em;
+			   padding-bottom: 0.0em;
+			   padding-top: 0.0em;
+			   margin-bottom: 0.0em;
+	           margin-left: 1em;
+			   margin-right: 0.5em;
+			   width: 28%;
+			<!--   max-width: 70%;-->
+	           flex-direction: column;
+               text-align: center;
+               min-height: 0%;			   
+	          }
+	.pcture{
+	    <!--    display: block;  -->
+		display: flex;
+		align-items: center;
+		justify-content: center;
+        margin-bottom: 0.0em;
+		<!--    margin: auto;
+			padding-bottom: 0.0em;  -->
+	       }
+	
+	.stx{
+         font-style: italic;
+         font-weight: bold;
+         font-size: 14px;
+		 color: #990000;
+         background-color: #FFFFF0;         
+         padding-bottom: 0.0em;
+        }
+		
+    .jumbotron{
+      font-style: normal;
+	  display:block;
+	  padding-left: 0.5em;
+	  margin-top: 5px;
+      padding: 17px;
+	  color: #990000;
+      background-color: #FFFFF0;
+	  }
+	  h6{
+	   font-size: 75%;
+	 }
+	 
+    </style> 
+
+{% endblock %}
+
+{% block load %}
+{% load django_bootstrap5 %}
+{% load static %} 
+{% bootstrap_javascript %}
+{% bootstrap_css %}
+{% endblock %}       
+ 
+</head>
+{% block body %}
+
+<br>
+<br> 
+<div class="rectangle">
+{% for x in picture_list %}
+   <div class="pcture">
+         {% if x.0 %}
+
+		 
+		 <img alt="image 5_small.jpg "
+          src="{% static 'images/image5_small.jpg' %}"          
+		  srcset="{{x.0.url}} 320w,  
+              {{x.0.url }} 800w,
+              {{x.0.url }} 1066w" 
+ 		  sizes="(min-width: 1066px) 100vw,
+              (min-width: 767px)100vw,		  
+              (min-width: 367px)100vw" > 
+		 
+		 {% else %}
+         {% endif %}
+   </div>
+
+ <p style="display:block; padding: 0.0 em; text-align: center"><span class="stx">
+        {% if x.1 %}
+        {{x.1 | safe}}
+        {% else %}
+        {% endif %}
+ </span></p>
+{% endfor %}
+</div>
+<div class="jumbotron"><h2 align="center">{{a1.title}}</h2><h6>&nbsp;&nbsp;{{a1.content | safe}}</h6></div>
+
+</div>
+</div>
+{% endblock %}
+{% block js %}
+{% endblock %}
+</html>
+

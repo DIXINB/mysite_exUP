@@ -1,0 +1,64 @@
+ {% extends 'base.html' %}
+
+{% block title %} Книгофил {% endblock %}
+{% block homeactive %} active {% endblock homeactive %}
+{% block load %}
+{% load django_bootstrap5 %}
+
+{% bootstrap_css %}
+
+{% bootstrap_javascript %}
+
+{% bootstrap_messages %}
+{% endblock %}	
+
+{% block css %}
+table {
+  width: 95%;
+}
+@media (max-width: 48em){
+  table,thead,tbody,tr,th,td {
+  display:block;
+}
+table{ margin-top: 2em;}
+tr{
+  margin-bottom: 1em;
+  padding-left: 0.5em;
+  padding-right: 0.5em;
+}
+}
+{% endblock %}
+
+
+{% block body %}
+
+<div align="center">
+<br>
+<table bordercolor="gray" border="3" rules="all" width="99%" height="99%">
+
+<tr>
+<br>
+<td valign="top" bgcolor="ivory" ><h6>Порядковый номер</h6></td>
+<td valign="top" bgcolor="ivory"><h6>Латинская фраза</h6></td>
+<td valign="top" bgcolor="ivory"><h6>Произношение</h6></td>
+<td valign="top" bgcolor="ivory"><h6>Русский перевод</h6></td>
+</tr>
+
+{% for item in dict_list %}
+
+<tr>
+<td align="center" valign="top"><h6>{{forloop.counter}}</h6></td>
+<td valign="top"><h6>{{item.lat}}</h6></td>
+<td valign="top"><h6>{{item.trans}} </h6></td>
+<td valign="top"><h6>{{item.rus}} </h6></td>
+</tr>
+
+{% endfor %}
+
+</table>  
+</div>
+
+
+{% endblock %}
+{% block js %} {% endblock %}
+</html>

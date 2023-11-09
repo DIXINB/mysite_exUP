@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block title %} Книгофил {% endblock %}
+{% block homeactive %} active {% endblock homeactive %}
+
+{% block load %}
+{% load static %}
+{% load bootstrap4 %}
+
+{% bootstrap_css %}
+
+{% bootstrap_javascript %}
+
+{% bootstrap_messages %}
+{% endblock %}	
+
+{% block css %}
+.container {
+ height: 20vh;
+  display: grid;
+  grid-template-areas: 'n1 n2' 'n1 n2';
+}
+.custom-btn-size {
+    letter-spacing: -1px;  
+}
+
+
+.item1 {
+  grid-area: n1;  
+}
+
+.item2 {
+  grid-area: n2;
+}
+
+@media (max-width: 767px) {
+  .container {
+    grid-template-areas: 'n1 n1' 'n2 n2';
+  }
+  .jumbotron > h1 {
+	  padding-top: 40px;
+	 }
+  .jumbotron > p {
+	  font-size: 14px;
+	 }   	 
+}
+
+{% endblock  %}
+
+{%block body%} 
+<div class="row no-gutters">
+<div class="col-12">
+<div class="jumbotron">
+    <h1 class="display-4">Книгофил</h1>
+    <p class="lead">В разделе «Проза» вы сможете почитать опусы других и разместить свое художественное произведение.
+	Раздел «История» содержит постоянно обновляемые эссе, посвященные наиболее интересным моментам мировой истории, о которых на публике говорится мало.
+	Значения новых слов есть возможность узнать в нашем «Словаре»,кроме того, вы сможете обогатить свою речь звучными фразами на латыни, произношение которых там также указано. 
+	В  части «Статьи» можно почитать статьи по самым разным темам, а также попробовать поделиться своими достижениями. В разделе «Форум» мы будем размещать комментарии к прочитанному.</p>
+    <hr class="my-0"> 
+    <p>Выберите нужный раздел, нажав кнопку.</p>	
+
+<div class="container">
+  <div class="item1">
+  <div class="d-flex justify-content-around">
+  {% bootstrap_button "Проза" button_type="link" button_class="btn-primary flex-fill me-1 " size="md" href="prose" %}
+  {% bootstrap_button "История" button_type="link" button_class="btn-primary flex-fill me-1 " size="md" href="history" %}	
+  {% bootstrap_button "Статьи" button_type="link" button_class="btn-primary flex-fill me-1 " size="md" href="articles" %} 		  
+  </div>
+  </div>
+  
+  <div class="item2">
+  <div  class="d-flex justify-content-around">
+  {% bootstrap_button "Форум" button_type="link" button_class="btn-primary custom-btn-size flex-fill me-1" size="md" href="forum" %}   
+  {% bootstrap_button "Словарь" button_type="link" button_class="btn-primary custom-btn-size flex-fill me-1" size="md" href="dict" %} 
+  {% bootstrap_button "Почта" button_type="link" button_class="btn-primary flex-fill me-1" size="md" href="mail" %}  
+  </div>
+  </div>
+
+</div>
+<p align="right">&copy 2023 Вадим В. Стеценко</p>
+</div>
+</div>
+</div>
+
+{% endblock %}
+{% block js %} {% endblock %}
+</html>
+<!--<div class="d-flex justify-content-around">
+{% bootstrap_button "Проза" button_type="link" button_class="btn-primary flex-fill me-1 " size="md" href="history" %}
+{% bootstrap_button "История" button_type="link" button_class="btn-primary flex-fill me-1 " size="md" href="history" %}	
+{% bootstrap_button "Статьи" button_type="link" button_class="btn-primary flex-fill me-1 " size="md" href="history" %} 		  
+</div>	
+<div  class="d-flex justify-content-around">
+{% bootstrap_button "Форум" button_type="link" button_class="btn-primary flex-fill me-1" size="md" href="history" %}   
+{% bootstrap_button "Словарь" button_type="link" button_class="btn-primary flex-fill me-1" size="md" href="history" %} 
+{% bootstrap_button "Почта" button_type="link" button_class="btn-primary flex-fill me-1" size="md" href="history" %}  
+</div> -->

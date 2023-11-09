@@ -1,0 +1,76 @@
+ {% extends 'base.html' %}
+
+{% block title %} Книгофил {% endblock %}
+{% block homeactive %} active {% endblock homeactive %}
+{% block load %}
+
+{% load django_bootstrap5 %}
+{% load static %}
+{% bootstrap_javascript %}
+{% bootstrap_css %} 
+{% load thumbnail %}
+{% endblock %}
+
+{% block css %}
+  div h4{font-size: 100%;}
+  div h6{font-size: 80%;}
+  body{background-color: #FEE9A0;}
+  btn{background-color: transparent;}
+ .container .row .col-md-5 a{ color: blue; margin-top: -20px;}
+  {% endblock %}
+
+{% block body %}
+ <style>
+  body{background-color: #FEE9A0};
+  btn{background-color: transparent};
+</style>
+
+ <br>
+<div class = "container">
+  <div class="row">
+     <div class="col-md-7"><br>     
+	 <img alt="Reading girl "
+       src="{% static 'images/image77_small.jpg' %}" 
+       srcset="{% static 'images/image77.jpg' %} 560w,  
+               {% static 'images/image77_medium.jpg' %} 800w,
+               {% static 'images/image77_medium.jpg' %} 1280w" style= "float: left" 
+       sizes="(min-width: 1066px) 75vw,
+              (min-width: 767px)65vw,		  
+              (min-width: 367px)110vw" > 	 
+	 </div>
+
+	 <div class="col-md-5 col-md-pull-1" ><br>{% for item in pros_list %}                                                     
+													  <h4>{{item.title}}&nbsp;&nbsp;&nbsp;<em><small>{{item.author | safe}}</em></small><span id="s1"><h6>Просмотров:{{item.total_views}}</h6></span><a href="{{item.ind}}" class="btn btn-link">>></a>
+  												      </h4>                                             
+                                              
+                                              {% endfor %}
+     </div>
+  </div>   
+                                
+     {% if hist_list.has_other_pages %}
+       <ul class="pagination">
+         {% if hist_list.has_previous %}
+           <li><a href="?page={{ hist_list.previous_page_number }}">&laquo;</a></li>
+         {% else %}
+           <li class="disabled"><span>&laquo;</span></li>
+         {% endif %}
+         {% for i in hist_list.paginator.page_range %}
+           {% if hist_list.number == i %}
+             <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+           {% else %}
+             <li><a href="?page={{ i }}">{{ i }}</a></li>
+           {% endif %}
+         {% endfor %}
+         {% if users.has_next %}
+           <li><a href="?page={{ hist_list.next_page_number }}">&raquo;</a></li>
+         {% else %}
+           <li class="disabled"><span>&raquo;</span></li>
+         {% endif %}
+       </ul>
+     {% endif %}
+    
+     </div>
+  </div>
+</div>  
+{% endblock %}
+

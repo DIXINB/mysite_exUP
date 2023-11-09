@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+<title>{% block title %} {% endblock %}</title>
+<style>
+  .navbar-light .navbar-toggler {
+   border-color: black; !important;
+   box-shadow: none !important;
+   }
+  
+		  {% block css %} {% endblock %}
+</style>
+<link rel="stylesheet" href="static/css5/bootstrap.min.css" >
+<script defer src="static/js5/bootstrap.bundle.min.js"></script>
+
+<!-- {% load django_bootstrap5 %} -->
+{% block load %}
+
+{% load static %}   
+{% load bootstrap4 %} 
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% endblock %}	
+</head>
+  
+<body>
+<nav class="navbar navbar-expand-sm navbar-light bg-light p-0 fixed-top" style="background-color: red;">
+ <div class="container-fluid">  
+    <a class="navbar-brand pl-4"  href="/">
+	  <img src="../../static/images/book1.png" alt="" width="38" height="27" class="d-inline-block align-top">	
+	  bookophile</a>  
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ms-auto">
+     <li class="nav-item {% block homeactive %} {% endblock homeactive %} "> 
+
+        <a class="nav-link" href="../">Home <span class="sr-only"></span></a>
+     </li>     
+    </ul>
+  </div>
+  </div>      
+</nav>
+{% block body %} {% endblock %}
+
+</body>
+ 
+{% block js %} {% endblock %}
+</html>

@@ -1,0 +1,11 @@
+.stx{
+         font-style: italic;
+         color: #FFFFFF;
+         font-weight: bold;
+         font-size: 55px;
+        }
+.rim{
+         background: url(images/image16.jpg);
+         background-size: 100%;
+         position: fixed;
+    }

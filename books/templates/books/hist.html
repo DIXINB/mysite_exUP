@@ -1,0 +1,126 @@
+{% extends 'base.html' %}
+
+{% block title %} Книгофил {% endblock %}
+{% block homeactive %} active {% endblock homeactive %}
+
+{% block css %}
+img{
+  float:left;
+}
+body{background-color: #FEE9A0}
+btn{background-color: transparent}
+
+    .rectangle{ 
+	           float:left;
+			   border: 2px solid #FEE9A0;               
+			   padding-left: 0.25em;
+			   padding-right: 0.25em;
+			   padding-top: 0.5em;
+			   padding-bottom: 0em;
+			   margin-bottom: 0.0em;
+	           margin-left: 1em;
+			   margin-right: 0.5em;
+			   width: 43%;
+	           flex-direction: column;
+               min-height: 0%;
+			 }
+	.pcture{   
+	        display: flex;
+			align-items: center;
+			justify-content: center;
+			padding-bottom: 0em;
+	 } 
+	.pcture2{ 
+	     padding-bottom: 0.5em;
+     }		 
+	.stx{        	 	 		 
+		 font-style: italic;
+		 font-weight: bold;
+         font-size: 14px;
+		 color: #990000;
+         background-color: #FFFFF0;
+     }
+    .jumbotron{
+      font-style: italic;  
+      display:block;
+	  padding-left: 0.5 em;
+	  margin-top: 5px;
+      padding: 10px;
+	  color: #990000;
+      background-color: #FFFFF0;
+	 }
+	.jumbotron > h6{
+	   font-size: 85%;
+	 }   
+{% endblock %}
+
+{% block load %}
+{% load django_bootstrap5 %}
+{% load static %}
+{% bootstrap_javascript %}
+{% bootstrap_css %} 
+{% load thumbnail %}
+{% endblock %}    
+</head> 
+  
+{% block body %}  
+<br> <br>
+	<div class="rectangle">
+	 <div class="pcture" >
+      {% if h1.picture1 %} 
+        <img alt="image 1 "
+          src="{% static 'images/image1_small.jpg' %}" 
+          srcset="{{h1.picture1.url }} 338w,  
+               {{h1.picture1.url }} 800w,
+               {{h1.picture1.url }} 1066w" 
+ 		  sizes="(min-width: 1066px) 100vw,
+                 (min-width: 767px)120vw,		  
+                 (min-width: 367px)120vw" >                  					    		
+	  {% else %} 
+      {% endif %}
+    </div>            
+    
+     {% if h1.text1 %}
+	 <p style="display:block; padding: 0 em; text-align: center; "><span class="stx">
+	     {{h1.text1 | safe}}
+		 </span></p>
+     {% else %}
+	 {% endif %}
+	 <div class="pcture pcture2" >
+      {% if h1.picture2 %}
+	         <img alt="image 2 "
+          src="{% static 'images/image5_small.jpg' %}"          
+		  srcset="{{h1.picture2.url }} 320w,  
+              {{h1.picture2.url }} 800w,
+              {{h1.picture2.url }} 1066w" 
+ 		  sizes="(min-width: 1066px) 100vw,
+              (min-width: 767px)120vw,		  
+              (min-width: 367px)140vw" >    
+
+	  {% else %}
+      {% endif %}	
+	 </div>
+	 <div class="pcture" >
+      {% if h1.picture3 %}
+	  <img alt="image 3 "
+          src="{% static 'images/image5_small.jpg' %}"          
+		  srcset="{{h1.picture3.url }} 320w,  
+              {{h1.picture3.url }} 800w,
+              {{h1.picture3.url }} 1066w" 
+ 		  sizes="(min-width: 1066px) 100vw,
+              (min-width: 767px)120vw,		  
+              (min-width: 367px)140vw" > 
+	  {% else %}  
+	  {% endif %}
+	 </div>	
+    </div>
+
+<div class="jumbotron"><h4 align="center"> {{h1.title}}</h4><h6>&nbsp;&nbsp;{{h1.content | safe}}</h6></div>
+</div>
+
+{% endblock %}
+{% block js %}
+
+{% endblock %}
+</html>
+

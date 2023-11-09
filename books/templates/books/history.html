@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+
+{% block title %} Книгофил {% endblock %}
+{% block homeactive %} active {% endblock homeactive %}
+
+{% block css %}
+body{
+font-size: .88rem;
+font-weight: 400;
+line-height: 1.5;
+color: #495057;
+}
+.col-md-8 {
+  padding: 15px;
+}
+.container {margin-top: 30px;}
+.container .row .col-md-4 #s1{margin-top: -10px;}
+.container .row .col-md-4 #s2{ color: blue; margin-top: -25px;}
+@media (max-width: 767px) {
+ .container img{margin-top: 20px;}
+ .container .row .col-md-4 {margin-top: -10px;}
+ .container .row .col-md-4 h6:nth-child(n+2) {margin-top: -15px;}
+}
+
+{% endblock %}
+
+{% block load %}
+{% load static %}   
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+{% bootstrap_messages %}
+{% load thumbnail %}
+{% endblock %}	
+
+{% block body %}
+<style>
+  body{background-color: #FEE9A0};
+  btn{background-color: transparent};
+</style> 
+  
+<!--  <h1 align="center">История</h1>   -->
+  <br>
+<div class = "container">
+  <div class="row">
+	<div class="col-md-8" >
+	<img alt="Sex in ancient Rome "
+       src="{% static 'images/image3_small.jpg' %}" 
+       srcset="{% static 'images/image3_small.jpg' %} 560w,  
+               {% static 'images/image3_medium.jpg' %} 800w,
+               {% static 'images/image3_medium.jpg' %} 1280w"  
+	   sizes="(min-width: 1066px)90vw,
+              (min-width: 767px)75vw,		  
+              (min-width: 367px)100vw" style= "float: left">
+	
+	</div>
+	
+	 <div class="col-md-4 col-md-pull-1 text-right" >{% for item in hist_list %}  										                                                                                           
+													 
+													 <h6>{{item.title}}</h6> <p id="s1"><small>Просмотров:{{item.total_views}}</small></p>
+													   <p id="s2"><a href="{{item.ind}}" class="btn btn-link">>></a></p>
+  												     
+                                                      {% endfor %}
+     </div>
+  </div>   
+                                
+     {% if hist_list.has_other_pages %}
+       <ul class="pagination">
+         {% if hist_list.has_previous %}
+           <li><a href="?page={{ hist_list.previous_page_number }}">&laquo;</a></li>
+         {% else %}
+           <li class="disabled"><span>&laquo;</span></li>
+         {% endif %}
+         {% for i in hist_list.paginator.page_range %}
+           {% if hist_list.number == i %}
+             <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+           {% else %}
+             <li><a href="?page={{ i }}">{{ i }}</a></li>
+           {% endif %}
+         {% endfor %}
+         {% if users.has_next %}
+           <li><a href="?page={{ hist_list.next_page_number }}">&raquo;</a></li>
+         {% else %}
+           <li class="disabled"><span>&raquo;</span></li>
+         {% endif %}
+       </ul>
+     {% endif %}
+     
+     </div>
+  </div>
+</div>  
+
+{% endblock %}

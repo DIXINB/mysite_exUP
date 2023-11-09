@@ -1,0 +1,4 @@
+div[class^=col]{
+ background: #FFFFFF;
+ border: 1px solid #FFFFFF;
+}
